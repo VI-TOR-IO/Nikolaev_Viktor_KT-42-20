@@ -1,16 +1,17 @@
+using _3_lab.Database;
+using Microsoft.EntityFrameworkCore;
 using NLog;
 using NLog.Web;
-
-
+using static _3_lab.ServiceExtensions.ServiceExtensions;
 
 var builder = WebApplication.CreateBuilder(args);
+
 var logger = LogManager.Setup().LoadConfigurationFromAppSettings().GetCurrentClassLogger();
 
 try
 {
     builder.Logging.ClearProviders();
     builder.Host.UseNLog();
-
     // Add services to the container.
 
     builder.Services.AddControllers();
@@ -18,15 +19,19 @@ try
     builder.Services.AddEndpointsApiExplorer();
     builder.Services.AddSwaggerGen();
 
+    builder.Services.AddDbContext<StudentDbContext>(options =>
+        options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+
+    builder.Services.AddServices();
+
     var app = builder.Build();
 
+    // Configure the HTTP request pipeline.
     if (app.Environment.IsDevelopment())
     {
         app.UseSwagger();
         app.UseSwaggerUI();
     }
-    // Configure the HTTP request pipeline.
-
 
     app.UseAuthorization();
 
@@ -34,11 +39,9 @@ try
 
     app.Run();
 }
-
 catch (Exception ex)
 {
     logger.Error(ex, "Stopped program because of exception");
-
 }
 finally
 {
