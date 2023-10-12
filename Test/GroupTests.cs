@@ -1,24 +1,23 @@
-using _3_lab.Models;
+﻿using _3_lab.Models;
 
-namespace Nikolaev_V_Tests
+namespace Test
 {
     public class GroupTests
     {
         [Fact]
-        public void IsValidGroupName_KT4220_True()
+        public void IsValidGroupName_KT3120_True()
         {
             //arrange
             var testGroup = new Group
-
             {
-                GroupName = "KT-42-20"
+                GroupName = "KT-31-20"
             };
 
             //act
             var result = testGroup.IsValidGroupName();
 
             //assert
-            Assert.True(result);
+            Assert.False(result);
         }
     }
 }

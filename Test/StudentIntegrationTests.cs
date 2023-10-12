@@ -1,10 +1,10 @@
-﻿using Microsoft.EntityFrameworkCore;
 using _3_lab.Database;
 using _3_lab.Interfaces.StudentsInterfaces;
-using _3_lab.Models;
 using _3_lab.Filters.StudentFilters;
+using _3_lab.Models;
+using Microsoft.EntityFrameworkCore;
 
-namespace Nikolaev_V_Tests
+namespace Test
 {
     public class StudentIntegrationTests
     {
@@ -18,7 +18,7 @@ namespace Nikolaev_V_Tests
         }
 
         [Fact]
-        public async Task GetStudentsByGroupAsync_KT4220_TwoObjects()
+        public async Task GetStudentsByGroupAsync_KT3120_TwoObjects()
         {
             // Arrange
             var ctx = new StudentDbContext(_dbContextOptions);
@@ -27,11 +27,11 @@ namespace Nikolaev_V_Tests
             {
                 new Group
                 {
-                    GroupName = "KT-41-20"
+                    GroupName = "KT-31-20"
                 },
                 new Group
                 {
-                    GroupName = "KT-42-20"
+                    GroupName = "KT-41-20"
                 }
             };
             await ctx.Set<Group>().AddRangeAsync(groups);
@@ -40,23 +40,23 @@ namespace Nikolaev_V_Tests
             {
                 new Student
                 {
-                    FirstName = "Mironov",
-                    LastName = "Galka",
-                    MiddleName = "Yletel",
+                    FirstName = "qwerty",
+                    LastName = "asdf",
+                    MiddleName = "zxc",
                     GroupId = 1,
                 },
                 new Student
                 {
-                    FirstName = "Gryzdev",
-                    LastName = "Boris",
-                    MiddleName = "Proigral",
+                    FirstName = "qwerty2",
+                    LastName = "asdf2",
+                    MiddleName = "zxc2",
                     GroupId = 2,
                 },
                 new Student
                 {
-                    FirstName = "Shashkin",
-                    LastName = "Shachmat",
-                    MiddleName = "Pobedil",
+                    FirstName = "qwerty3",
+                    LastName = "asdf3",
+                    MiddleName = "zxc3",
                     GroupId = 1,
                 }
             };
@@ -67,7 +67,7 @@ namespace Nikolaev_V_Tests
             // Act
             var filter = new StudentGroupFilter
             {
-                GroupName = "KT-42-20"
+                GroupName = "KT-31-20"
             };
             var studentsResult = await studentService.GetStudentsByGroupAsync(filter, CancellationToken.None);
 
