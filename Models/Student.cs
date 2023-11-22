@@ -1,4 +1,6 @@
-﻿namespace _3_lab.Models
+﻿using System.Text.Json.Serialization;
+
+namespace _3_lab.Models
 {
     public class Student
     {
@@ -7,7 +9,10 @@
         public string? LastName { get; set; }
         public string? MiddleName { get; set; }
         public int GroupId { get; set; }
+
+        [JsonIgnore]
         public Group? Group { get; set; }
-        
+        //public Group? Group { get; set; }
+
     }
 }
