@@ -1,6 +1,7 @@
 ﻿using _1_lab.Models;
 using _3_lab.Database;
 using _3_lab.Filters.CourseFilters;
+using _3_lab.Filters.StudentFioFilters;
 using _3_lab.Interfaces.CoursesInterfaces;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;

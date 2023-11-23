@@ -11,8 +11,8 @@ using _3_lab.Database;
 namespace _1_lab.Migrations
 {
     [DbContext(typeof(StudentDbContext))]
-    [Migration("20231102195424_Create")]
-    partial class Create
+    [Migration("20231123114556_cret")]
+    partial class cret
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -123,7 +123,7 @@ namespace _1_lab.Migrations
             modelBuilder.Entity("_1_lab.Models.Course", b =>
                 {
                     b.HasOne("_3_lab.Models.Group", "Group")
-                        .WithMany()
+                        .WithMany("Courses")
                         .HasForeignKey("GroupId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired()
@@ -135,13 +135,20 @@ namespace _1_lab.Migrations
             modelBuilder.Entity("_3_lab.Models.Student", b =>
                 {
                     b.HasOne("_3_lab.Models.Group", "Group")
-                        .WithMany()
+                        .WithMany("Students")
                         .HasForeignKey("GroupId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired()
                         .HasConstraintName("fk_f_group_id");
 
                     b.Navigation("Group");
+                });
+
+            modelBuilder.Entity("_3_lab.Models.Group", b =>
+                {
+                    b.Navigation("Courses");
+
+                    b.Navigation("Students");
                 });
 #pragma warning restore 612, 618
         }

@@ -1,5 +1,6 @@
 ﻿using _3_lab.Database;
 using _3_lab.Filters.StudentFilters;
+using _3_lab.Filters.StudentFioFilters;
 using _3_lab.Interfaces.StudentsInterfaces;
 using _3_lab.Models;
 using Microsoft.AspNetCore.Mvc;
@@ -28,6 +29,14 @@ namespace _3_lab.Controllers
         public async Task<IActionResult> GetStudentsByGroupAsync(StudentGroupFilter filter, CancellationToken cancellationToken = default)
         {
             var students = await _studentService.GetStudentsByGroupAsync(filter, cancellationToken);
+
+            return Ok(students);
+        }
+
+        [HttpPost("GetStudentsByFio")]
+        public async Task<IActionResult> GetStudentsByFioAsync(StudentFioFilter filter, CancellationToken cancellationToken = default)
+        {
+            var students = await _studentService.GetStudentsByFioAsync(filter, cancellationToken);
 
             return Ok(students);
         }

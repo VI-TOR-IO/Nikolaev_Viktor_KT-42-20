@@ -5,7 +5,7 @@
 namespace _1_lab.Migrations
 {
     /// <inheritdoc />
-    public partial class Create : Migration
+    public partial class cret : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)

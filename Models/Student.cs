@@ -14,5 +14,12 @@ namespace _3_lab.Models
         public Group? Group { get; set; }
         //public Group? Group { get; set; }
 
+        public string FIO
+        {
+            get
+            {
+                return FirstName + " " + LastName + " " + MiddleName;
+            }
+        }
     }
 }
